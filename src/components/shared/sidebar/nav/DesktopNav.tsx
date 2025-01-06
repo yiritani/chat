@@ -1,16 +1,21 @@
-"use client"
+"use client";
 
-import React from 'react';
-import {useNavigation} from "@/hooks/useNavigation";
-import {Card} from "@/components/ui/card";
-import {UserButton} from "@clerk/nextjs";
-import Link from 'next/link';
-import {Tooltip, TooltipContent, TooltipTrigger} from '@/components/ui/tooltip';
-import {Button} from "@/components/ui/button";
-import {ModeToggle} from "@/components/ui/theme/theme-toggle";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/ui/theme/theme-toggle";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { useNavigation } from "@/hooks/useNavigation";
+import { UserButton } from "@clerk/nextjs";
+import Link from "next/link";
 
 const DesktopNav = () => {
-  const paths = useNavigation()
+  const paths = useNavigation();
+
   return (
     <Card className="hidden lg:flex lg:flex-col lg:justify-between lg:items-center lg:h-full lg:w-16 lg:px-2 lg:py-4">
       <nav>
@@ -27,6 +32,11 @@ const DesktopNav = () => {
                       >
                         {path.icon}
                       </Button>
+                      {path.count ? (
+                        <Badge className="absolute left-6 bottom-7 px-2">
+                          {path.count}
+                        </Badge>
+                      ) : null}
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>{path.name}</p>
@@ -38,9 +48,9 @@ const DesktopNav = () => {
           })}
         </ul>
       </nav>
-      <div className={"flex flex-col items-center gap-4"}>
-        <ModeToggle />
-        <UserButton/>
+      <div className="flex flex-col items-center gap-4">
+        <ThemeToggle />
+        <UserButton />
       </div>
     </Card>
   );

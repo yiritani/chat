@@ -1,21 +1,22 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/ui/theme/theme-toggle";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useConversations } from "@/hooks/useConversations";
+import { useConversation } from "@/hooks/useConversation";
 import { useNavigation } from "@/hooks/useNavigation";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
-import {ModeToggle} from "@/components/ui/theme/theme-toggle";
 
 const MobileNav = () => {
   const paths = useNavigation();
-  const { isActive } = useConversations();
+  const { isActive } = useConversation();
 
   if (isActive) return null;
 
@@ -35,6 +36,11 @@ const MobileNav = () => {
                       >
                         {path.icon}
                       </Button>
+                      {path.count ? (
+                        <Badge className="absolute left-7 bottom-6">
+                          {path.count}
+                        </Badge>
+                      ) : null}
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>{path.name}</p>
@@ -45,10 +51,10 @@ const MobileNav = () => {
             );
           })}
           <li>
-            <ModeToggle />
+            <UserButton />
           </li>
           <li>
-            <UserButton />
+            <ThemeToggle />
           </li>
         </ul>
       </nav>

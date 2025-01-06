@@ -1,9 +1,7 @@
 import { Card } from "@/components/ui/card";
-import React, {ReactNode} from "react";
+import React from "react";
 
-type Props = {
-  children: ReactNode;
-};
+type Props = React.PropsWithChildren<{}>;
 
 const ConversationContainer = ({ children }: Props) => {
   return (

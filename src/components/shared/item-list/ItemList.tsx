@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 
-import { useConversations } from "@/hooks/useConversations";
+import { useConversation } from "@/hooks/useConversation";
 import { Card } from "@/components/ui/card";
 
 type Props = React.PropsWithChildren<{
@@ -11,7 +11,7 @@ type Props = React.PropsWithChildren<{
 }>;
 
 const ItemList = ({ children, title, action: Action }: Props) => {
-  const { isActive } = useConversations();
+  const { isActive } = useConversation();
 
   return (
     <Card
